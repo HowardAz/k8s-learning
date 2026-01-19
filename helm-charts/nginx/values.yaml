@@ -1284,3 +1284,28 @@ metrics:
     periodSeconds: 5
     failureThreshold: 10
     successThreshold: 1
+
+  # Extra ConfigMap to deploy
+  extraDeploy:
+    - apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: my-extra-config
+      data:
+        welcome.html: |
+          <html>
+            <body>
+              <h1>Hello from ExtraDeploy!</h1>
+            </body>
+          </html>
+  
+  # Mount the ConfigMap as a volume in the pod
+  extraVolumes:
+    - name: extra-config
+      configMap:
+        name: my-extra-config
+  
+  extraVolumeMounts:
+    - name: extra-config
+      mountPath: /usr/share/nginx/html/welcome.html
+      subPath: welcome.html
