@@ -1277,6 +1277,7 @@ metrics:
   ## @param metrics.startupProbe.failureThreshold Failure threshold for startupProbe
   ## @param metrics.startupProbe.successThreshold Success threshold for startupProbe
   ##
+
   startupProbe:
     enabled: false
     initialDelaySeconds: 5
@@ -1284,8 +1285,7 @@ metrics:
     periodSeconds: 5
     failureThreshold: 10
     successThreshold: 1
-
-  # Extra ConfigMap to deploy
+  
   extraDeploy:
     - apiVersion: v1
       kind: ConfigMap
@@ -1299,7 +1299,6 @@ metrics:
             </body>
           </html>
   
-  # Mount the ConfigMap as a volume in the pod
   extraVolumes:
     - name: extra-config
       configMap:
@@ -1309,3 +1308,4 @@ metrics:
     - name: extra-config
       mountPath: /usr/share/nginx/html/welcome.html
       subPath: welcome.html
+
